@@ -1,0 +1,28 @@
+import { array_shift } from "std/array"
+import * from "std/text"
+
+const INPUT_PATH = "input.txt"
+
+let state = 50
+let password = 0
+
+fun execute_command(direction: Text, amount: Int) {
+    if {
+        direction == "L": state -= amount
+        direction == "R": state += amount
+    }
+    while state < 0: state += 100
+    while state > 0: state -= 100
+}
+
+for i, line in lines(INPUT_PATH): trust {
+    let chars = split_chars(line)
+    const direction = array_shift(chars)
+    const amount = parse_int(join(chars, ""))
+    execute_command(direction, amount)
+    if state == 0 {
+        password += 1
+    }
+}
+
+echo "The password is {password}"
