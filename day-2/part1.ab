@@ -1,0 +1,49 @@
+import * from "std/fs"
+import * from "std/text"
+import * from "std/env"
+
+// This Exercise was too resource intensive for Amber / Bash
+
+const INPUT_PATH = "input.txt"
+
+let answer = 0
+
+// As of amber 0.5.1-alpha on macOS ranges
+// yield big values in scientific notations
+#[allow_absurd_cast]
+fun range(start, end) {
+    let values = [Text]
+    trust $
+    for ((i={start}; i<={end}; i++)); do
+        {nameof values}+=("\$i")
+    done $
+    return values as [Int]
+}
+
+// We implement an efficient way of checking if variable is repeated
+fun is_repeated(value: Int) {
+    return trust $
+        [[ -n {value} && {value} == "\$\{{nameof value}:0:\$\{#{nameof value}}/2}\$\{{nameof value}:0:\$\{#{nameof value}}/2}" ]] && echo "y" || echo "n"
+    $ == "y"
+}
+
+fun scan_range(start: Int, end: Int) {
+    echo "Working on range {start}-{end}"
+    for value in range(start, end) {
+        if is_repeated(value) {
+            answer += value
+        }
+    }
+    echo "Answer at this point: {answer}"
+}
+
+main {
+    const content = file_read(INPUT_PATH)?
+    for range in split(content, ",") {
+        const range_content = split(range, "-")
+        const start = parse_int(range_content[0])?
+        const end = parse_int(range_content[1])?
+        scan_range(start, end)
+    }
+    echo "Answer is: {answer}"
+}

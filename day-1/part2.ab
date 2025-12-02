@@ -19,11 +19,13 @@ fun execute_command(direction: Text, amount: Int) {
     }
 }
 
-for i, line in lines(INPUT_PATH): trust {
-    let chars = split_chars(line)
-    const direction = array_shift(chars)
-    const amount = parse_int(join(chars, ""))
-    execute_command(direction, amount)
-}
+main {
+    for i, line in lines(INPUT_PATH): trust {
+        let chars = split_chars(line)
+        const direction = array_shift(chars)
+        const amount = parse_int(join(chars, ""))
+        execute_command(direction, amount)
+    }
 
-echo "The password is {password}"
+    echo "The password is {password}"
+}

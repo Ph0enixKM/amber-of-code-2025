@@ -15,14 +15,16 @@ fun execute_command(direction: Text, amount: Int) {
     while state > 99: state -= 100
 }
 
-for i, line in lines(INPUT_PATH): trust {
-    let chars = split_chars(line)
-    const direction = array_shift(chars)
-    const amount = parse_int(join(chars, ""))
-    execute_command(direction, amount)
-    if state == 0 {
-        password += 1
+main {
+    for i, line in lines(INPUT_PATH): trust {
+        let chars = split_chars(line)
+        const direction = array_shift(chars)
+        const amount = parse_int(join(chars, ""))
+        execute_command(direction, amount)
+        if state == 0 {
+            password += 1
+        }
     }
-}
 
-echo "The password is {password}"
+    echo "The password is {password}"
+}
