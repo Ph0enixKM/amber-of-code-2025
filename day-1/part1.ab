@@ -12,7 +12,7 @@ fun execute_command(direction: Text, amount: Int) {
         direction == "R": state += amount
     }
     while state < 0: state += 100
-    while state > 0: state -= 100
+    while state > 99: state -= 100
 }
 
 for i, line in lines(INPUT_PATH): trust {

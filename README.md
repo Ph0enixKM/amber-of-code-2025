@@ -1,5 +1,7 @@
 # Advent of code 2025 in Amber
 
+![Amber of Code 2025](image.png)
+
 This repository contains solutions to [Advent of Code 2025](https://adventofcode.com/2025) puzzles written in [Amber](https://amber-lang.com/), a modern programming language that compiles to Bash.
 
 ## About
